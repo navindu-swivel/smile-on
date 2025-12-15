@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type Message = {
   role: 'user' | 'bot';
@@ -86,7 +88,9 @@ export default function Chatbot() {
                     ? 'bg-blue-600 text-white rounded-br-none' 
                     : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none shadow-sm'
                 }`}>
-                  <div className="text-sm whitespace-pre-wrap">{msg.content}</div>
+                  <div className={`text-sm prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-li:my-0 ${msg.role === 'user' ? 'prose-invert' : ''}`}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                </div>
                 </div>
               </div>
             ))}

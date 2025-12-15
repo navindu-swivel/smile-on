@@ -36,10 +36,10 @@ export async function POST(req: Request) {
     const relevantDocs = await retriever.invoke(message);
     const context = relevantDocs.map(doc => doc.pageContent).join('\n\n');
 
-    // Initialize Chat Model (GPT-4o-mini)
+    // Initialize Chat Model (GPT-5.1-mini)
     const model = new ChatOpenAI({
-      modelName: 'gpt-4o-mini',
-      temperature: 0.7,
+      modelName: 'gpt-5-mini',
+    //   temperature: 0.2,
     });
 
     // Create Prompt
