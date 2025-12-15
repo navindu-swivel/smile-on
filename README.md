@@ -16,9 +16,36 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Chatbot & Scraping
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project includes a sample chatbot that uses data scraped from [smileon.com.au](https://www.smileon.com.au/).
+
+### Scraping & Embedding Data
+
+To scrape the latest data from the website and upload it to the Vector DB (Pinecone), run:
+
+1.  **Scrape**:
+    ```bash
+    node scripts/scrape.js
+    ```
+2.  **Embed**:
+    ```bash
+    node scripts/embed.js
+    ```
+
+### Chatbot
+
+The chatbot is available on the home page. It uses GPT-4o-mini and Pinecone to answer questions.
+
+## Configuration
+
+Create a `.env.local` file with the following keys:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_INDEX=smile-on-index
+```
 
 ## Learn More
 
