@@ -44,7 +44,7 @@ Create a `.env.local` file with the following keys:
 ```env
 OPENAI_API_KEY=your_openai_api_key
 PINECONE_API_KEY=your_pinecone_api_key
-PINECONE_INDEX=smile-on-index
+PINECONE_INDEX=your_index_name
 ```
 
 ## Learn More
