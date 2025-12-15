@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     // Create Prompt
     const template = `You are a helpful assistant for "Smile On", a dental clinic network.
     Use the following pieces of context to answer the user's question.
-    If you don't know the answer, just say that you don't know, don't try to make up an answer.
+    If you don't know the answer, just say "NO_CONTEXT_ANSWER", don't try to make up an answer.
     
     Current Datetime: ${new Date().toISOString()}
     Context:
@@ -69,9 +69,15 @@ export async function POST(req: Request) {
     ]);
 
     // Run Chain
-    const response = await chain.invoke({});
+    let response = await chain.invoke({});
+    let showCTA = false;
 
-    return NextResponse.json({ response });
+    if (response.includes('NO_CONTEXT_ANSWER')) {
+      response = "I apologize, but I don't have that information available right now. Would you like to speak with our team?";
+      showCTA = true;
+    }
+
+    return NextResponse.json({ response, showCTA });
 
   } catch (error) {
     console.error('Error processing chat request:', error);
